@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Table" targetRuntime="Mybatis3">
+        <!--
+       targetRuntime有两个值：
+           MyBatis3Simple：生成的是基础版，只有基本的增删改查。
+           MyBatis3：生成的是增强版，除了基本的增删改查之外还有复杂的增删改查。
+   -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
+        <commentGenerator>
+<!--            是否去掉生成日期-->
+            <property name="suppressDate" value="true"/>
+<!--            是否去掉注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+<!--        连接数据库信息-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mydb"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+<!--        生成pojo包名和位置-->
+        <javaModelGenerator targetPackage="com.bjpowernode.pojo" targetProject="src/main/java">
+            <!--        是否开启子包-->
+            <property name="enableSUbPackages" value="true"/>
+            <!--        是否去掉字段名的前后空白-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+<!--        生成sql映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="com.bjpowernode.mapper" targetProject="src/main/resources">
+            <!--        是否开启子包-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+<!--        生成mapper接口的包名和位置-->
+        <javaClientGenerator type="xmlMapper" targetPackage="com.bjpowernode.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+<!--        表名和对应的实体类名-->
+        <table tableName="admin" domainObjectName="Admin"/>
+        <table tableName="produce_info" domainObjectName="Produce_info"/>
+        <table tableName="produce_type" domainObjectName="Produce_type"/>
+    </context>
+</generatorConfiguration>
